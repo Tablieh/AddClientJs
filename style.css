@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+
+#wrapper{
+    max-width: 900px;
+    margin: auto;
+}
+
+#personnes{
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.personne{
+    width: 300px;
+    height: 300px;
+    margin: 1em;
+    padding: 1em;
+    position: relative;
+}
+
+.suppr{
+    background-color: red;
+    color: white;
+    font-size: 1.5em;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+}
+.Image{
+    width: 150px;
+    height: 150px;
+    
+}
+.personne .pic{
+    border-radius: 3rem;
+    padding: 1em;
+    border: 2px solid #ccc;
+    width: 6em;
+    background-color: #fff;
+}
+
+.personne h1{
+    border-top: 2px solid #ccc;
+    margin-top: -2em;
+    padding-top: 2.5em;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Trombino</title>
+</head>
+<body>
+    <div id="wrapper">
+
+        <form id="form">
+            <input type="text" name="nom" placeholder="Prénom NOM"><br>
+            <input type="date" name="datenaiss">
+            <input type="submit" value="Ajouter">
+        </form>
+
+        <a href="" id="link">Vérifier nombre de personnes</a>
+
+        <section id="personnes"></section>
+        
+    </div>
+    <script>
+        /*
+            - ajouter une image (pas dans le formulaire) dans la div.personne
+            - faire fonctionner le bouton suppr (croix rouge)
+        */
+        class Personne{
+            constructor(name, date ,img){
+                this.name = name
+                this.date = date
+                
+            }
+            render(){
+                let html = document.createElement("div")                                    //cree un elem div
+                html.classList.add("personne")                                              //ajout la classe (ici perssone ) en css
+                html.innerHTML = "<img class='Image' src='new.png' alt='Harry' >" +"</img>"            //Ajout objet qui contien image 
+                html.innerHTML += "<h1>"+ this.name + "</h1>"                               //reajout dans lobjet h1
+                html.innerHTML += "<p>"+ new Date(this.date).toLocaleDateString() + "</p>"  //reajout dans lobjet date dans p
+                html.innerHTML += "<button class='suppr'>&times;</button>"                   // le button x de supprime
+
+                // bottons pour remove le element a partir de son parant en cree le var qui condra button supremme 
+                this.activateButton(html.querySelector(".suppr"))
+                
+                return html
+            }
+            activateButton(button){
+                
+                button.addEventListener("click", (event) => {
+                    //on supprime la balise parent de l'élément ciblé par le clic
+                    event.target.parentNode.remove()
+                })
+            
+            } 
+        }
+        
+               
+        
+        let form = document.querySelector("#form")
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()//empèche l'event de base de se déclencher
+            
+            let name = form.querySelector("input[name='nom']")
+            let date = form.querySelector("input[name='datenaiss']")
+
+            let newPersonne = new Personne(name.value, date.value)
+            name.value = ""
+            date.value = ""
+            document.querySelector("#personnes").appendChild(newPersonne.render())
+           
+        })
+        
+        document.querySelector("#link").addEventListener("click", (event) => {
+            event.preventDefault()
+            alert("Il y a "+document.querySelectorAll(".personne").length+" personnes dans la liste")
+        })
+
+
+    </script>
+</body>
+</html>
